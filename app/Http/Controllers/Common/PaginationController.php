@@ -34,7 +34,7 @@ class PaginationController extends Controller
             $result = $result.'{';   
             foreach($columns as $key2 => $col){ 
                 $colName = $col['data'];
-                $result = $result.'"'.$colName.'":"'.$colName.'"';  
+                $result = $result.'"'.$colName.'":"'.$item->$colName.'"';  
                 if($key2 != (count($columns)-1))
                     $result = $result.',';                                           
             }   

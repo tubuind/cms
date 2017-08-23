@@ -45,9 +45,28 @@ class Helper
             preDrawCallback: function() {
                 $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
             }
-        });  
+        });";
+        
+    $script = $script.'
+    $("#'.$id.'").DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "'.config('app.url', '').$url.'",
+            "type": "POST",
+            "data": function (data) {
+                data.model = "'.$model.'";
+            },
+        },
+        "columns": [';
+    foreach ($columns as $col) {
+        $script = $script.'{ "data": "'.$col['attribute'].'" },';
+    }
     
-        // External table additions
+    $script = $script.']';
+    $script = $script.'});'; 
+    
+        $script = $script."// External table additions
         // ------------------------------
     
         // Add placeholder to the datatable filter option
@@ -59,27 +78,7 @@ class Helper
             minimumResultsForSearch: Infinity,
             width: 'auto'
         });";    
-        $script = $script.'
-            $("#'.$id.'").DataTable( {
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    "url": "'.config('app.url', '').$url.'",
-                    "type": "POST",
-                    "data": function (data) {
-                        data.model = "'.$model.'";
-                    },
-                },
-                "columns": [';
-        foreach ($columns as $col) {
-            $script = $script.'{ "data": "'.$col['attribute'].'" },';
-        }
-        
-        $script = $script.'],
-            });
-        ';  
-              
-                              
+                                                
         $script = $script.'</script>';
 
         echo $html.$script;

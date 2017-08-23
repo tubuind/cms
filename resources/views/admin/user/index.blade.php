@@ -23,15 +23,19 @@
                 'columns' => [
                     [
                         'label' => 'Name',
-                        'attribute' => 'name',                        
+                        'attribute' => 'name',                   
                     ],
                     [
                         'label' => 'Email',
-                        'attribute' => 'email',                        
+                        'attribute' => 'email',                                             
                     ],
                     [
                         'label' => 'Created Date',
-                        'attribute' => 'created_date',                     
+                        'attribute' => 'created_at',                   
+                    ],
+                    [
+                        'label' => 'Updated Date',
+                        'attribute' => 'updated_at',                      
                     ]
                 ],               
             ]);
