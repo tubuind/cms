@@ -66,10 +66,7 @@ class Helper
     $script = $script.']';
     $script = $script.'});'; 
     
-        $script = $script."// External table additions
-        // ------------------------------
-    
-        // Add placeholder to the datatable filter option
+        $script = $script."
         $('.dataTables_filter input[type=search]').attr('placeholder','Type to filter...');
     
     
