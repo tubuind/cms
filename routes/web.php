@@ -16,15 +16,15 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
+//Wellcome
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 //Language
 Route::get('/language/set', 'Guest\LanguagesController@set')->name('guest.language.set');
 
+//Group router admin
 Route::group(['prefix'=>'/admin', 'middleware'=>['auth'] ], function(){
 
     //Dashboard

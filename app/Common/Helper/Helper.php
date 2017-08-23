@@ -9,7 +9,7 @@ class Helper
         $id = $config['id'];
         $columns = $config['columns'];
         $url = $config['url'];
-
+        $model = $config['model'];
 
         $html = '<table class="table" id="'.$id.'">';
         $html = $html.'<thead>';
@@ -30,9 +30,22 @@ class Helper
             $("#'.$id.'").DataTable( {
                 "processing": true,
                 "serverSide": true,
-                "ajax": "'.$url.'"
-            } );
-        } );';
+                "ajax": {
+                    "url": "'.config('app.url', '').$url.'",
+                    "type": "POST",
+                    "data": function (data) {
+                        data.model = "'.$model.'";
+                    },
+                },
+                "columns": [';
+        foreach ($columns as $col) {
+            $script = $script.'{ "data": "'.$col['attribute'].'" },';
+        }
+        
+        $script = $script.'],
+            });
+        });';            
+                              
         $script = $script.'</script>';
 
         echo $html.$script;

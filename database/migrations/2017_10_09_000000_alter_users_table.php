@@ -18,7 +18,6 @@ class AlterUsersTable extends Migration
         Schema::table(UsersTable::TABLE_NAME, function (Blueprint $table) {
             $table->string(UsersTable::FLD_AVARTAR_URL)->nullable();
             $table->ipAddress(UsersTable::FLD_IP)->nullable();
-            $table->ipAddress(UsersTable::FLD_IP)->nullable();
             $table->integer(UsersTable::FLD_CREATED_BY);   
             $table->integer(UsersTable::FLD_UPDATED_BY);
             $table->string(UsersTable::FLD_NOTE)->nullable();

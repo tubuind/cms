@@ -18,20 +18,22 @@
         <?php
             Helper::DataTable([
                 'id' => 'datatable-user',
+                'url' => '/api/v1/admin/user/list',
+                'model' => 'App/Model/User',
                 'columns' => [
                     [
                         'label' => 'Name',
-                        'value' => function($item){
-                            return $item->name;
-                        }
+                        'attribute' => 'name',                        
                     ],
                     [
                         'label' => 'Email',
-                        'value' => function($item){
-                            return $item->email;
-                        }
+                        'attribute' => 'email',                        
+                    ],
+                    [
+                        'label' => 'Created Date',
+                        'attribute' => 'created_date',                     
                     ]
-                ]
+                ],               
             ]);
         ?>
         </div>

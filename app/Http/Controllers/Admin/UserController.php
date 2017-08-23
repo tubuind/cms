@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Pagination\Paginator;
 
 class UserController extends Controller
 {
@@ -19,17 +20,6 @@ class UserController extends Controller
         return View('admin.user.index',[
             'model' => $model
         ]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function data(Request $request)
-    {
-        $model = User::all();
-        return $model;
     }
 
     /**
