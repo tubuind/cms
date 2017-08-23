@@ -31,7 +31,6 @@
 	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/plugins/forms/selects/select2.min.js"></script>
 
 	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/core/app.js"></script>
-	<script type="text/javascript" src="{{ config('app.url', '') }}/js/cms_datatable.js"></script>
 </head>
 
 <body class="navbar-top">
