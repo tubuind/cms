@@ -37,7 +37,8 @@
                         'label' => 'Updated Date',
                         'attribute' => 'updated_at',                      
                     ]
-                ],               
+                ],
+                'search' => ['name','email']
             ]);
         ?>
         </div>

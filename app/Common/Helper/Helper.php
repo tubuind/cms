@@ -10,6 +10,7 @@ class Helper
         $columns = $config['columns'];
         $url = $config['url'];
         $model = $config['model'];
+        $search = $config['search'];
 
         $html = '<table class="table" id="'.$id.'">';
         $html = $html.'<thead>';
@@ -56,9 +57,19 @@ class Helper
             "type": "POST",
             "data": function (data) {
                 data.model = "'.$model.'";
-            },
+                data.search_columns = [';
+
+    foreach ($search as $index => $item) {
+        $script = $script.'"'.$item.'"';
+        if($index != (count($search) - 1)){
+            $script = $script.',';
+        }
+    }
+
+    $script = $script.'];
         },
-        "columns": [';
+    },
+    "columns": [';
     foreach ($columns as $col) {
         $script = $script.'{ "data": "'.$col['attribute'].'" },';
     }

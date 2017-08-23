@@ -14,19 +14,28 @@ class PaginationController extends Controller
      * @return \Illuminate\Http\Response
     */
     public function list(Request $request)
-    {       
+    {
+        //Get request
         $strModel = $request->input('model');
         $length = $request->input('length');
         $start = $request->input('start');
         $draw = $request->input('draw');
         $columns = $request->input('columns');
+        $search = $request->input('search')['value'];
+        $searchColumns = $request->input('search_columns');
+        $order = $request->input('order')[0];
+
+
         // if($strModel == null || $length == null || $start == null || $draw == null || $data == null)
         //     return [
         //         'error' => 'Bad Request'
         //     ];
+
+        //Analytics request
         $strModel = str_replace('/', '\\', $strModel); 
         $model = new $strModel();
-        $query = $model::skip($start)->take($length)->get();
+        $model = $model::where($searchColumns[0], 'like', '%'.$search.'%');
+        $query = $model->skip($start)->take($length)->get();
         $count = $model->count();
         
         $result = '{"draw": '.$draw.',"recordsTotal": '.$count.',"recordsFiltered": '.$count.',"data": [';  
