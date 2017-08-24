@@ -13,10 +13,9 @@ return [
      |
      */
     
-    'left_menu.setting' => 'Cai dat',
-    'left_menu.authorize' => 'Authorize Management',
-    'left_menu.user_management' => 'User Management',
-    'left_menu.role_management' => 'Role Management',
-    'left_menu.permission_management' => 'Permission Management',
-    'left_menu.language_management' => 'Language Management'
+    'left_menu.setting' => 'Cài đặt',
+    'left_menu.authorize' => 'Bảo Mật',
+    'left_menu.user_management' => 'Quản Lý Thành Viên',
+    'left_menu.role_management' => 'Quản Lý Vai Trò',
+    'left_menu.permission_management' => 'Quản Lý Quyền Hạn',
 ];

@@ -19,9 +19,7 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Email</th>
                         <th>Creted Date</th>
-                        <th>Verified</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -38,27 +36,16 @@
                 'serverSide': true,
                 'target': 0,
                 'ajax': {
-                    'url': '{{ config('app.url', '') }}/api/v1/admin/user/list',
+                    'url': '{{ config('app.url', '') }}/api/v1/admin/permission/list',
                     'type': 'POST',
                     'data': function(d){
-                        d.model = 'App/Model/User',
-                        d.search_columns = ['name','email', 'created_at', 'status'];
+                        d.model = 'App/Model/Permission',
+                        d.search_columns = ['name', 'created_at', 'status'];
                     }
                 },
                 'columns': [                    
                     { 'data': 'name', 'orderable': true },
-                    { 'data': 'email', 'orderable': true },
-                    { 'data': 'created_at', 'orderable': true },   
-                    { 
-                        'data': 'is_verified', 
-                        'orderable': true,
-                        'render': function(data, type, row){
-                            if(data == 0)
-                                return 'No';
-                            else
-                                return 'Yes';
-                        }
-                    },                
+                    { 'data': 'created_at', 'orderable': true },                  
                     { 'data': 'status', 'orderable': true },
                     { 
                         'data': null, 

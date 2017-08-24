@@ -1880,7 +1880,7 @@ input[class*=bg-] + .form-control-feedback {
 .dropdown-menu > .dropdown-header > img {
   margin-right: 12px;
   float: left;
-  margin-top: 2px;
+  margin-top: 5px;
   top: 0;
 }
 .dropdown-menu > li > a > i.pull-right,

@@ -33,4 +33,7 @@ Route::group(['prefix'=>'/admin', 'middleware'=>['auth'] ], function(){
     //User
     Route::get('/user', 'Admin\UserController@index')->name('admin.user.index');
 
+    //User
+    Route::get('/permission', 'Admin\PermissionController@index')->name('admin.permission.index');
+
 });

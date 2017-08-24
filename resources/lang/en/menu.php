@@ -18,5 +18,4 @@ return [
     'left_menu.user_management' => 'User Management',
     'left_menu.role_management' => 'Role Management',
     'left_menu.permission_management' => 'Permission Management',
-    'left_menu.language_management' => 'Language Management'
 ];

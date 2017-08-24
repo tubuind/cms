@@ -13,6 +13,6 @@ return [
      |
      */
     
-    'list_user' => 'List Users',
+    'list_users' => 'List Users',
 
 ];

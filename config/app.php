@@ -113,7 +113,7 @@ return [
         'vi' => [
             'name' => 'Tiếng Việt',
             'alias' => 'vi',
-            'logo' => '/assets/images/flags/gb.png'
+            'logo' => '/assets/images/flags/vn.png'
         ]
     ],
 
