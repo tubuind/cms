@@ -17,6 +17,7 @@
 	<link href="{{ config('app.url', '') }}/assets/css/core.css" rel="stylesheet" type="text/css">
 	<link href="{{ config('app.url', '') }}/assets/css/components.css" rel="stylesheet" type="text/css">
 	<link href="{{ config('app.url', '') }}/assets/css/colors.css" rel="stylesheet" type="text/css">
+	<link href="{{ config('app.url', '') }}/css/cms.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 
 	<!-- Core JS files -->
@@ -33,7 +34,9 @@
 </head>
 
 <body class="navbar-top">
+	<div id="div-ajax-loading" style="background-image: url('{{ config('app.url', '') }}/assets/images/ajax_loading.svg');">
 
+	</div>
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-header">

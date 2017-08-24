@@ -37,8 +37,10 @@ class PaginationController extends Controller
             foreach($searchColumns as $sc)
                 $model = $model->orWhere($sc, 'like', '%'.$search.'%');
         }
-        $query = $model->skip($start)->take($length)->get();
+        
         $count = $model->count();
+        $query = $model->skip($start)->take($length)->get();
+        
         
         //Init json result
         $result = '{"draw": '.$draw.',"recordsTotal": '.$count.',"recordsFiltered": '.$count.',"data": [';  
