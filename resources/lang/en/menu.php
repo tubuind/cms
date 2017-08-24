@@ -12,7 +12,9 @@ return [
      | these language lines according to your application's requirements.
      |
      */
-    
+
+    'left_menu.home' => 'Home',
+    'left_menu.dashboard' => 'Dashboard',
     'left_menu.setting' => 'Setting',
     'left_menu.authorize' => 'Authorize Management',
     'left_menu.user_management' => 'User Management',

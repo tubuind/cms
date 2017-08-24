@@ -35,5 +35,6 @@ Route::group(['prefix'=>'/admin', 'middleware'=>['auth'] ], function(){
 
     //User
     Route::get('/permission', 'Admin\PermissionController@index')->name('admin.permission.index');
+    Route::get('/permission/create', 'Admin\PermissionController@create')->name('admin.permission.create');
 
 });

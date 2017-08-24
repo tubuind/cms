@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,7 +24,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('admin.permission.index');
+        return view('admin.permission.index',[
+            'pageTitle' => 'menu.left_menu.permission_management'
+        ]);
     }
 
     /**
@@ -33,7 +36,10 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.permission.create',[
+            'model' => new Permission(),
+            'pageTitle' => 'menu.left_menu.permission_management'
+        ]);
     }
 
     /**

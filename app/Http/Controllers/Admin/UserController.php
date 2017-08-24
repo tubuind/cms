@@ -17,7 +17,9 @@ class UserController extends Controller
     public function index()
     {
         $model = User::all();
-        return View('admin.user.index');
+        return View('admin.user.index',[
+            'pageTitle' => 'menu.left_menu.user_management'
+        ]);
     }
 
     /**

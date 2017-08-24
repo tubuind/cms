@@ -42,7 +42,7 @@
 	<!-- Main navbar -->
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="index.html"><img src="{{ config('app.url', '') }}/assets/images/logo_light.png" alt=""></a>
+			<a class="navbar-brand" href="{{ config('app.url', '') }}"><img src="{{ config('app.url', '') }}/assets/images/logo_light.png" alt=""></a>
 
 			<ul class="nav navbar-nav visible-xs-block">
 				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -305,7 +305,7 @@
 				<div class="page-header page-header-default">
 					<div class="page-header-content">
 						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">Home</span> - Dashboard</h4>
+							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{{ __('menu.left_menu.home') }}</span> - {{ __($pageTitle) }}</h4>
 						</div>
 
 						{{--<div class="heading-elements">--}}

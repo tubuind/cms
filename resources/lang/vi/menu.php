@@ -12,8 +12,10 @@ return [
      | these language lines according to your application's requirements.
      |
      */
-    
-    'left_menu.setting' => 'Cài đặt',
+
+    'left_menu.home' => 'Trang Chủ',
+    'left_menu.dashboard' => 'Tổng Quan ',
+    'left_menu.setting' => 'Cài Đặt',
     'left_menu.authorize' => 'Bảo Mật',
     'left_menu.user_management' => 'Quản Lý Thành Viên',
     'left_menu.role_management' => 'Quản Lý Vai Trò',
