@@ -15,6 +15,13 @@ $(window).on('load', function() {
     $('body').removeClass('no-transitions');
 });
 
+$( document ).ajaxStart(function() {
+    $( '#div-ajax-loading' ).css( 'display', 'block');
+});
+
+$( document ).ajaxStop(function() {
+    $( '#div-ajax-loading' ).css( 'display', 'none' );
+});
 
 $(function() {
 

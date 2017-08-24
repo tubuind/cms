@@ -8,7 +8,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'My CMS') }}</title>
+	<title>{{ config('app.name', 'My CMS') }}</title>
+	
+	<link rel="shortcut icon" href="{{ config('app.url', '') }}/assets/images/favicon.ico">
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -33,7 +35,7 @@
 	<script type="text/javascript" src="{{ config('app.url', '') }}/js/cms.datatable.js"></script>
 </head>
 
-<body class="navbar-top">
+<body class="navbar-top pace-done">
 	<div id="div-ajax-loading" style="background-image: url('{{ config('app.url', '') }}/assets/images/ajax_loading.svg');">
 
 	</div>
