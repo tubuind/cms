@@ -15,35 +15,57 @@
         </div>
 
         <div class="panel-body">
-        <?php
-            Helper::DataTable([
-                'id' => 'datatable-user',
-                'url' => '/api/v1/admin/user/list',
-                'model' => 'App/Model/User',
-                'columns' => [
-                    [
-                        'label' => 'Name',
-                        'attribute' => 'name',                   
-                    ],
-                    [
-                        'label' => 'Email',
-                        'attribute' => 'email',                                             
-                    ],
-                    [
-                        'label' => 'Created Date',
-                        'attribute' => 'created_at',                   
-                    ],
-                    [
-                        'label' => 'Updated Date',
-                        'attribute' => 'updated_at',                      
-                    ]
-                ],
-                'search' => ['name','email']
-            ]);
-        ?>
+            <table class="table" id="datatable-user">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Creted Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfooter>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Creted Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </tfooter>
+            </table>
         </div>
-
-
     </div>
-
+    <script>
+        $(function(){
+            $('#datatable-user').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'ajax': {
+                    'url': '{{ config('app.url', '') }}/api/v1/admin/user/list',
+                    'type': 'POST',
+                    'data': function(d){
+                        d.model = 'App/Model/User',
+                        d.search_columns = ['name','email', 'created_at', 'status'];
+                    }
+                },
+                'columns': [
+                    { 'data': 'name', 'orderable': true },
+                    { 'data': 'email', 'orderable': true },
+                    { 'data': 'created_at', 'orderable': true },
+                    { 'data': 'status', 'orderable': true },
+                    { 
+                        'data': null, 
+                        'orderable': false,
+                        'render': function(){ 
+                            return '';                            
+                        }
+                    },
+                ]
+            });
+        });
+    </script>
 @endsection

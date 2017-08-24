@@ -25,19 +25,22 @@ class PaginationController extends Controller
         $searchColumns = $request->input('search_columns');
         $order = $request->input('order')[0];
 
-
-        // if($strModel == null || $length == null || $start == null || $draw == null || $data == null)
-        //     return [
-        //         'error' => 'Bad Request'
-        //     ];
-
         //Analytics request
         $strModel = str_replace('/', '\\', $strModel); 
+        $orderColumn = $order['column'];
+        $orderType = $order['dir'];
+
+        //Start query
         $model = new $strModel();
-        $model = $model::where($searchColumns[0], 'like', '%'.$search.'%');
+        $model = $model->orderBy($columns[$orderColumn]['data'], $orderType);
+        if(count($searchColumns) > 0 && $search != null){
+            foreach($searchColumns as $sc)
+                $model = $model->orWhere($sc, 'like', '%'.$search.'%');
+        }
         $query = $model->skip($start)->take($length)->get();
         $count = $model->count();
         
+        //Init json result
         $result = '{"draw": '.$draw.',"recordsTotal": '.$count.',"recordsFiltered": '.$count.',"data": [';  
         foreach($query as $key1 => $item){ 
             $result = $result.'{';   
@@ -52,6 +55,7 @@ class PaginationController extends Controller
                 $result = $result.','; 
         }   
         $result = $result.']}';  
+        
         return $result;
     }
 }
