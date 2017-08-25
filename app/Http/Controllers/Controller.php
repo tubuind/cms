@@ -21,17 +21,12 @@ class Controller extends BaseController
     }
 
     private function detectedLanguage(){
-        $lang = null;
         $listLanguage = config('app.list_locale');
-        $cookieLang = Cookie::get('lang');
-
-        if (!empty($cookieLang)) {
-            $lang = Crypt::decrypt($cookieLang);
-        }
+        $lang = Cookie::get('lang');
 
         if (!array_key_exists ($lang, $listLanguage)) {
             $language = config('app.default_locale');
-            $lang = $language['alias'];
+            $cookieLang = $language['alias'];
         }
         else{
             $language = $listLanguage[$lang];
