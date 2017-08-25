@@ -5,6 +5,12 @@ namespace App\Model;
 use App\Common\Constants\PermissionsTable;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ *
+ * @property int $id
+ * @property int created_by
+ * @property int updated_by
+ */
 class Permission extends Model
 {
     /**

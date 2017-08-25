@@ -22,8 +22,8 @@
                             <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
                             @if ($errors->has('name'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('name') }}</strong>
+                                <span class="label-error">
+                                    {{ $errors->first('name') }}
                                 </span>
                             @endif
                             <div class="form-control-feedback">
@@ -35,8 +35,8 @@
                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
                             @if ($errors->has('email'))
-                                <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                <span class="label-error">
+                                        {{ $errors->first('email') }}
                                     </span>
                             @endif
                             <div class="form-control-feedback">
@@ -50,9 +50,9 @@
                                     <input id="password" type="password" class="form-control" name="password" required>
 
                                     @if ($errors->has('password'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                        <span class="label-error">
+                                            {{ $errors->first('password') }}
+                                        </span>
                                     @endif
                                     <div class="form-control-feedback">
                                         <i class="icon-user-lock text-muted"></i>

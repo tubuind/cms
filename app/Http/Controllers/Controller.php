@@ -8,7 +8,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController

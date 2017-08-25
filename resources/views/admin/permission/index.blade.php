@@ -15,11 +15,17 @@
         </div>
 
         <div class="panel-body">
+
+            <a href="{{ config('app.url', '') }}/admin/permission/create" type="button" class="btn border-slate text-slate-800 btn-flat pull-right">
+                <i class="icon-cog3 position-left"></i> Add New
+            </a>
+
             <table class="table" id="datatable-user">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Creted Date</th>
+                        <th>Created Date</th>
+                        <th>Updated Date</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -45,7 +51,8 @@
                 },
                 'columns': [                    
                     { 'data': 'name', 'orderable': true },
-                    { 'data': 'created_at', 'orderable': true },                  
+                    { 'data': 'created_at', 'orderable': true },
+                    { 'data': 'updated_at', 'orderable': true },
                     { 'data': 'status', 'orderable': true },
                     { 
                         'data': null, 

@@ -1,3 +1,7 @@
+.label-error{
+    color: red;
+}
+
 #div-ajax-loading{
     position: fixed;
     width: 100%;

@@ -20,7 +20,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Creted Date</th>
+                        <th>Created Date</th>
                         <th>Verified</th>
                         <th>Status</th>
                         <th>Action</th>
@@ -48,7 +48,7 @@
                 'columns': [                    
                     { 'data': 'name', 'orderable': true },
                     { 'data': 'email', 'orderable': true },
-                    { 'data': 'created_at', 'orderable': true },   
+                    { 'data': 'created_at', 'orderable': true },
                     { 
                         'data': 'is_verified', 
                         'orderable': true,

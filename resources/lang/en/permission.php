@@ -14,5 +14,5 @@ return [
      */
     
     'list_permissions' => 'List Permissions',
-
+    'add_new_permissions' => 'Add New Permission',
 ];

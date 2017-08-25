@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Permission;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 
 class PermissionController extends Controller
 {
@@ -15,6 +16,7 @@ class PermissionController extends Controller
      public function __construct()
      {
          parent::__construct();
+         View::share('pageTitle', 'menu.left_menu.permission_management');
      }
 
     /**
@@ -25,7 +27,7 @@ class PermissionController extends Controller
     public function index()
     {
         return view('admin.permission.index',[
-            'pageTitle' => 'menu.left_menu.permission_management'
+
         ]);
     }
 
@@ -38,7 +40,6 @@ class PermissionController extends Controller
     {
         return view('admin.permission.create',[
             'model' => new Permission(),
-            'pageTitle' => 'menu.left_menu.permission_management'
         ]);
     }
 
@@ -50,7 +51,24 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:6',
+        ]);
+
+        $permission = new Permission();
+        $permission->fill($request->all());
+
+        $permission->created_by = 3;
+        $permission->updated_by = 3;
+
+        if($permission->save())
+            return redirect()->route('admin.permission.index');
+        else
+            return view('admin.permission.create', [
+                'model'=> $permission
+            ])->withErrors(
+                ['unknown_error' => 'Deo biet loi']
+            );
     }
 
     /**
