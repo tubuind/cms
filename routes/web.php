@@ -22,20 +22,20 @@ Route::get('/', function () {
 });
 
 //Language
-Route::get('/language/set', 'Guest\LanguagesController@set')->name('guest.language.set');
+Route::get('/language/set', 'Guest\LanguagesController@set')->name('language.set');
 
 //Group router admin
-Route::group(['prefix'=>'/admin', 'middleware'=>['auth'] ], function(){
+Route::group(['prefix'=>'/admin', 'middleware'=>['auth', 'bindings'] ], function(){
 
     //Dashboard
-    Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard.index');
+    Route::get('/', 'Admin\DashboardController@index')->name('dashboard.index');
 
     //User
-    Route::get('/user', 'Admin\UserController@index')->name('admin.user.index');
+    Route::resource('user', 'Admin\UserController');
 
-    //User
-    Route::get('/permission', 'Admin\PermissionController@index')->name('admin.permission.index');
-    Route::get('/permission/create', 'Admin\PermissionController@create')->name('admin.permission.create');
-    Route::post('/permission/create', 'Admin\PermissionController@store')->name('admin.permission.store');
+    //Permission
+    Route::resource('permission', 'Admin\PermissionController', [
+        'except' => ['show'],
+    ]);
 
 });

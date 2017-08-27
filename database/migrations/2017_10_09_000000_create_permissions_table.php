@@ -18,6 +18,7 @@ class CreatePermissionsTable extends Migration
         Schema::create(PermissionsTable::TABLE_NAME, function (Blueprint $table) {
             $table->increments(PermissionsTable::FLD_ID);
             $table->string(PermissionsTable::FLD_NAME);
+            $table->string(PermissionsTable::FLD_ACTION)->unique();
             $table->timestamps();
             $table->integer(PermissionsTable::FLD_CREATED_BY);
             $table->integer(PermissionsTable::FLD_UPDATED_BY);

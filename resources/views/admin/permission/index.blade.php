@@ -24,8 +24,9 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Created Date</th>
-                        <th>Updated Date</th>
+                        <th>Action</th>
+                        {{--<th>Created Date</th>--}}
+                        {{--<th>Updated Date</th>--}}
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -46,23 +47,37 @@
                     'type': 'POST',
                     'data': function(d){
                         d.model = 'App/Model/Permission',
-                        d.search_columns = ['name', 'created_at', 'status'];
+                        d.search_columns = ['name', 'action', 'status'];
                     }
                 },
                 'columns': [                    
                     { 'data': 'name', 'orderable': true },
-                    { 'data': 'created_at', 'orderable': true },
-                    { 'data': 'updated_at', 'orderable': true },
+                    { 'data': 'action', 'orderable': true },
+//                    { 'data': 'created_at', 'orderable': true },
+//                    { 'data': 'updated_at', 'orderable': true },
                     { 'data': 'status', 'orderable': true },
                     { 
                         'data': null, 
                         'orderable': false,
-                        'render': function(){ 
-                            return '';                            
+                        'render': function(data, type, row, meta){
+                            var render = '<a href="{{ config('app.url', '') }}/admin/permission/'+ data.id +'/edit" type="button" class="text-slate-800"><i class="icon-eye"></i></a>';
+                            render += '<form class="virtual-form-delete" method="POST" action="{{ config('app.url', '') }}/admin/permission/'+ data.id +'">{{ csrf_field() }} {{ method_field("DELETE") }}<button type="submit" onclick="CMS.formConfirm(event, this.form);" class="btn text-slate-800 btn-flat"><i class="icon-cross"></i></button></form>';
+                            return render;
                         }
                     },
                 ]
             });
         });
     </script>
+
+    <?php
+        if(isset($notification)){
+    ?>
+    <script>
+        CMS.showNotify('Error', '{{ $notification }}', true);
+    </script>
+    <?php
+        }
+
+    ?>
 @endsection

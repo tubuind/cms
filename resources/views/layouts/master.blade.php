@@ -27,12 +27,16 @@
 	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/core/libraries/jquery.min.js"></script>
 	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/core/libraries/bootstrap.min.js"></script>
 	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/plugins/loaders/blockui.min.js"></script>
+	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/plugins/notifications/pnotify.min.js"></script>
+	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/plugins/notifications/noty.min.js"></script>
+	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/plugins/notifications/jgrowl.min.js"></script>
 	<!-- /core JS files -->
 
 	<!-- Theme JS files -->
 	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/plugins/tables/datatables/datatables.min.js"></script>
 	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/plugins/forms/selects/select2.min.js"></script>
 	<script type="text/javascript" src="{{ config('app.url', '') }}/js/cms.datatable.js"></script>
+
 </head>
 
 <body class="navbar-top pace-done">
@@ -373,6 +377,29 @@
 	</div>
 	<!-- /page container -->
 
+	<!-- Custom header color -->
+	<div id="modal-confirm" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-brown">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h6 class="modal-title">Warning</h6>
+				</div>
+
+				<div class="modal-body">
+					<h6>Do you want to continues this action.</h6>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-link" data-dismiss="modal">No</button>
+					<button type="button" class="btn bg-brown">Yes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /custom header color -->
+
 	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/core/app.js"></script>
+	<script type="text/javascript" src="{{ config('app.url', '') }}/js/cms.js"></script>
 </body>
 </html>

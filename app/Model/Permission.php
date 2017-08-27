@@ -6,10 +6,15 @@ use App\Common\Constants\PermissionsTable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- *
  * @property int $id
+ * @property string action
+ * @property string name
+ * @property date created_at
+ * @property date updated_at
  * @property int created_by
  * @property int updated_by
+ * @property string note
+ * @property string status
  */
 class Permission extends Model
 {
@@ -26,7 +31,7 @@ class Permission extends Model
      * @var array
      */
     protected $fillable = [
-        PermissionsTable::FLD_ID, PermissionsTable::FLD_NAME, PermissionsTable::FLD_CREATED_AT, PermissionsTable::FLD_UPDATED_AT, 
+        PermissionsTable::FLD_ID, PermissionsTable::FLD_NAME, PermissionsTable::FLD_ACTION, PermissionsTable::FLD_CREATED_AT, PermissionsTable::FLD_UPDATED_AT,
             PermissionsTable::FLD_CREATED_BY, PermissionsTable::FLD_UPDATED_BY, PermissionsTable::FLD_NOTE, PermissionsTable::FLD_STATUS 
     ];
     

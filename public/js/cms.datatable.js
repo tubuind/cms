@@ -20,7 +20,7 @@ $(function() {
             autoWidth: false,
             columnDefs: [{ 
                 orderable: false,
-                width: '100px',
+                //width: '100px',
                 targets: 0
             }],
             dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',

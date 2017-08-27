@@ -12,3 +12,7 @@
     top: 0;
     display: none;
 }
+
+.virtual-form-delete{
+    display:inline-block;
+}

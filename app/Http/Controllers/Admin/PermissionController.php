@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Permission;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class PermissionController extends Controller
@@ -26,9 +28,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view('admin.permission.index',[
-
-        ]);
+        return view('admin.permission.index');
     }
 
     /**
@@ -39,35 +39,35 @@ class PermissionController extends Controller
     public function create()
     {
         return view('admin.permission.create',[
-            'model' => new Permission(),
+            'permission' => new Permission(),
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @return Response
      */
     public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|min:6',
+            'action' => 'required|min:6|unique:permissions'
         ]);
 
         $permission = new Permission();
         $permission->fill($request->all());
-
-        $permission->created_by = 3;
-        $permission->updated_by = 3;
+        $permission->created_by = Auth::user()->id;
+        $permission->updated_by = Auth::user()->id;
 
         if($permission->save())
-            return redirect()->route('admin.permission.index');
+            return redirect()->route('permission.index');
         else
-            return view('admin.permission.create', [
+            return view('permission.create', [
                 'model'=> $permission
             ])->withErrors(
-                ['unknown_error' => 'Deo biet loi']
+                ['unknown_error' => 'unknown_error']
             );
     }
 
@@ -75,44 +75,63 @@ class PermissionController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  \App\Model\Permission  $permission
+     * @return Response
      */
-    public function edit($id)
+    public function edit(Permission $permission)
     {
-        //
+        return view('admin.permission.edit',[
+            'permission' => $permission,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Request  $request
+     * @param  \App\Model\Permission  permission
+     * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Permission $permission)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|min:6',
+            'action' => 'required|min:6|unique:permissions,id,'.$permission->id
+        ]);
+        $permission->updated_by = Auth::user()->id;
+
+        if($permission->update($request->all()))
+            return redirect()->route('permission.index');
+        else
+            return view('permission.edit', [
+                'model'=> $permission
+            ])->withErrors(
+                ['unknown_error' => 'unknown_error']
+            );
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
+     * @param  \App\Model\Permission  permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Permission $permission)
     {
-        //
+        if (!$permission->delete()) {
+            return redirect()->route('permission.index', [
+                'notification' => 'Failed to delete record'
+            ]);
+        }
+        return redirect()->route('permission.index');
     }
 }

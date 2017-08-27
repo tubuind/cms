@@ -45,7 +45,8 @@ class PaginationController extends Controller
         //Init json result
         $result = '{"draw": '.$draw.',"recordsTotal": '.$count.',"recordsFiltered": '.$count.',"data": [';  
         foreach($query as $key1 => $item){ 
-            $result = $result.'{';   
+            $result = $result.'{';
+            $result = $result.'"id":"'.$item->id.'",';
             foreach($columns as $key2 => $col){ 
                 $colName = $col['data'];
                 $result = $result.'"'.$colName.'":"'.$item->$colName.'"';  

@@ -4,7 +4,7 @@
     <!-- Basic datatable -->
     <div class="panel panel-flat">
         <div class="panel-heading">
-            <h5 class="panel-title">{{ __('permission.add_new_permissions') }}</h5>
+            <h5 class="panel-title">{{ __('permission.update_permissions') }}</h5>
             <div class="heading-elements">
                 <ul class="icons-list">
                     <li><a data-action="collapse"></a></li>
@@ -16,12 +16,13 @@
 
         <div class="panel-body">
             {{
-                Form::open([
-                    'route' => 'permission.store',
+                Form::model($permission, array(
+                    'route' => [ 'permission.update', $permission->id ],
                     'class' => 'form-horizontal form-validate-jquery',
-                    'method' => 'POST'
-                ])
+                ))
             }}
+
+            {{ method_field("PUT") }}
 
             @include('admin.permission._form')
 
