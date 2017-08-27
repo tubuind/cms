@@ -38,8 +38,8 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('admin.permission.create',[
-            'permission' => new Permission(),
+        return view('admin.permission.create', [
+            'permission' => new Permission()
         ]);
     }
 
@@ -65,7 +65,7 @@ class PermissionController extends Controller
             return redirect()->route('permission.index');
         else
             return view('permission.create', [
-                'model'=> $permission
+                'permission'=> $permission
             ])->withErrors(
                 ['unknown_error' => 'unknown_error']
             );

@@ -3,9 +3,18 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use app\Common\Constants\RolesTable;
+use App\Common\Constants\RolesTable;
 
-class Roles extends Model
+/**
+ * @property int $id
+ * @property string name
+ * @property string created_at
+ * @property string updated_at
+ * @property int created_by
+ * @property int updated_by
+ * @property string note
+ */
+class Role extends Model
 {
     /**
      * The table associated with the model.
@@ -20,7 +29,8 @@ class Roles extends Model
      * @var array
      */
     protected $fillable = [
-        
+         RolesTable::FLD_ID,  RolesTable::FLD_NAME,  RolesTable::FLD_CREATED_AT,  RolesTable::FLD_UPDATED_AT,
+         RolesTable::FLD_CREATED_BY,  RolesTable::FLD_UPDATED_BY,  RolesTable::FLD_NOTE
     ];
     
     /**

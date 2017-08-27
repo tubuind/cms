@@ -25,9 +25,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Action</th>
-                        {{--<th>Created Date</th>--}}
+                        <th>Created At</th>
                         {{--<th>Updated Date</th>--}}
-                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -47,16 +46,15 @@
                     'type': 'POST',
                     'data': function(d){
                         d.model = 'App/Model/Permission',
-                        d.search_columns = ['name', 'action', 'status'];
+                        d.search_columns = ['name', 'action', 'created_at'];
                     }
                 },
                 'columns': [                    
                     { 'data': 'name', 'orderable': true },
                     { 'data': 'action', 'orderable': true },
-//                    { 'data': 'created_at', 'orderable': true },
+                    { 'data': 'created_at', 'orderable': true },
 //                    { 'data': 'updated_at', 'orderable': true },
-                    { 'data': 'status', 'orderable': true },
-                    { 
+                    {
                         'data': null, 
                         'orderable': false,
                         'render': function(data, type, row, meta){

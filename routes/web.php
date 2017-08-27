@@ -38,4 +38,9 @@ Route::group(['prefix'=>'/admin', 'middleware'=>['auth', 'bindings'] ], function
         'except' => ['show'],
     ]);
 
+    //Role
+    Route::resource('role', 'Admin\RoleController', [
+        'except' => ['show'],
+    ]);
+
 });

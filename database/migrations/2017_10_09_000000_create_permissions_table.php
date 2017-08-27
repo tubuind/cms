@@ -23,7 +23,6 @@ class CreatePermissionsTable extends Migration
             $table->integer(PermissionsTable::FLD_CREATED_BY);
             $table->integer(PermissionsTable::FLD_UPDATED_BY);
             $table->string(PermissionsTable::FLD_NOTE)->nullable();
-            $table->enum(PermissionsTable::FLD_STATUS, CommonConstants::COMMON_STATUS);
         });
     }
     

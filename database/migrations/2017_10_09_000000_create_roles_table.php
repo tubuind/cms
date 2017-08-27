@@ -22,7 +22,6 @@ class CreateRolesTable extends Migration
             $table->integer(RolesTable::FLD_CREATED_BY);
             $table->integer(RolesTable::FLD_UPDATED_BY);
             $table->string(RolesTable::FLD_NOTE)->nullable();
-            $table->enum(RolesTable::FLD_STATUS, CommonConstants::COMMON_STATUS);
         });
     }
 

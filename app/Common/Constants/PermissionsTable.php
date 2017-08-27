@@ -12,5 +12,4 @@ class PermissionsTable{
     const FLD_CREATED_BY = 'created_by';
     const FLD_UPDATED_BY = 'updated_by';
     const FLD_NOTE = 'note';
-    const FLD_STATUS = 'status';
 }

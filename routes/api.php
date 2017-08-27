@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => '/v1/admin'], function(){
     Route::post('/user/list', 'Common\PaginationController@list')->name('api.admin.user.list');
     Route::post('/permission/list', 'Common\PaginationController@list')->name('api.admin.permission.list');
+    Route::post('/role/list', 'Common\PaginationController@list')->name('api.admin.role.list');
 });
