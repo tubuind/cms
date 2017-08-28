@@ -20,9 +20,6 @@ class CreateUsersRolesTable extends Migration
             $table->increments(UsersRolesTable::FLD_ID); 
             $table->integer(UsersRolesTable::FLD_USER_ID)->unsigned();
             $table->integer(UsersRolesTable::FLD_ROLE_ID)->unsigned();
-            $table->timestamps();
-            $table->integer(UsersRolesTable::FLD_CREATED_BY)->nullable();
-            $table->integer(UsersRolesTable::FLD_UPDATED_BY)->nullable();
             
             $table->foreign(UsersRolesTable::FLD_USER_ID)
             ->references(UsersTable::FLD_ID)->on(UsersTable::TABLE_NAME)

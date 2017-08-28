@@ -20,9 +20,6 @@ class CreateRolesPermissionsTable extends Migration
             $table->increments(RolesPermissionsTable::FLD_ID);
             $table->integer(RolesPermissionsTable::FLD_PERMISSION_ID)->unsigned();
             $table->integer(RolesPermissionsTable::FLD_ROLE_ID)->unsigned();
-            $table->timestamps();
-            $table->integer(RolesPermissionsTable::FLD_CREATED_BY)->nullable();
-            $table->integer(RolesPermissionsTable::FLD_UPDATED_BY)->nullable();
             
             $table->foreign(RolesPermissionsTable::FLD_PERMISSION_ID)
             ->references(PermissionsTable::FLD_ID)->on(PermissionsTable::TABLE_NAME)

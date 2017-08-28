@@ -41,4 +41,12 @@ class Role extends Model
     protected $hidden = [
         
     ];
+
+     /**
+     * The roles that belong to the user.
+     */
+     public function permissions()
+     {
+         return $this->belongsToMany('App\Model\Permission', 'roles_permissions', 'role_id', 'permission_id');
+     }
 }

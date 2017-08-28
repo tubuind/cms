@@ -16,7 +16,7 @@
 
         <div class="panel-body">
             {{
-                Form::mode($role, [
+                Form::model($role, [
                     'route' => 'role.store',
                     'class' => 'form-horizontal form-validate-jquery',
                     'method' => 'POST'
