@@ -31,6 +31,20 @@
 
     <!-- Basic text input -->
     <div class="form-group">
+        <label class="control-label col-lg-3">Permissions </label>
+        <div class="col-lg-9">
+            {{ Form::select('permissions[]', $options ,null, ['class' => 'form-control select', 'multiple' => 'multiple']) }}
+            @if ($errors->has('note'))
+                <span class="label-error">
+                    {{ $errors->first('note') }}
+                </span>
+            @endif
+        </div>
+    </div>
+    <!-- /basic text input -->
+
+    <!-- Basic text input -->
+    <div class="form-group">
         <label class="control-label col-lg-3"></label>
         <div class="col-lg-9">
             @if ($errors->has('unknown_error'))

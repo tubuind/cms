@@ -34,8 +34,10 @@
 
 	<!-- Theme JS files -->
 	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/plugins/tables/datatables/datatables.min.js"></script>
+	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
 	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/plugins/forms/selects/select2.min.js"></script>
 	<script type="text/javascript" src="{{ config('app.url', '') }}/js/cms.datatable.js"></script>
+	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/pages/form_select2.js"></script>
 
 </head>
 
