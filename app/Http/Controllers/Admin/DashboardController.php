@@ -25,7 +25,6 @@ class DashboardController extends Controller
     {
         return view('admin.dashboard',[
             'pageTitle' => 'menu.left_menu.dashboard',
-            'model' => \App\Model\Role::find(1)->permissions
         ]);
     }
 }

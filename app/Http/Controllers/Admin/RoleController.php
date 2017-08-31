@@ -57,7 +57,6 @@ class RoleController extends Controller
             'name' => 'required|min:6',
         ]);
 
-
         $role = new Role();
         $role->fill($request->all());
         $role->created_by = Auth::user()->id;
