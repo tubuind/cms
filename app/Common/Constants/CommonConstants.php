@@ -8,6 +8,7 @@ class CommonConstants
     const DISABLED_STATUS = 'Disabled';
 
     const DEFAULT_CREATED_UPDATED_BY = 0;
+
 }
 
 

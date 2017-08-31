@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
 {
@@ -56,20 +57,36 @@ class RoleController extends Controller
         $this->validate($request, [
             'name' => 'required|min:6',
         ]);
+        
+        DB::beginTransaction();
+        try {
+            $role = new Role();
+            $role->fill($request->all());
+            $role->created_by = Auth::user()->id;
+            $role->updated_by = Auth::user()->id;
+            $role->save();
 
-        $role = new Role();
-        $role->fill($request->all());
-        $role->created_by = Auth::user()->id;
-        $role->updated_by = Auth::user()->id;
+            $role->permissions()->sync($request->input('permissions'));
 
-        if($role->save())
-            return redirect()->route('role.index');
-        else
+            DB::commit();
+            $success = true;
+        } catch (Exception $e) {
+            $success = false;
+            DB::rollback();
+        }
+    
+        if ($success) {
+            return redirect()->route('role.index', [
+                'notification' => 'created_success'
+            ]);
+        }
+        else{
             return view('role.create', [
                 'model'=> $role
             ])->withErrors(
                 ['unknown_error' => 'unknown_error']
             );
+        };                        
     }
 
     /**
@@ -112,11 +129,16 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        if (!$role->delete()) {
+            return redirect()->route('role.index', [
+                'notification' => 'deleted_error'
+            ]);
+        }
+        return redirect()->route('role.index');
     }
 }
