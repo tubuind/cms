@@ -1,11 +1,8 @@
 <?php
 
-use App\Common\Constants\UsersRolesTable;
-use App\Common\Constants\UsersTable;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use app\Common\Constants\RolesTable;
 
 class CreateUsersRolesTable extends Migration
 {
@@ -16,17 +13,17 @@ class CreateUsersRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create(UsersRolesTable::TABLE_NAME, function (Blueprint $table) {
-            $table->increments(UsersRolesTable::FLD_ID); 
-            $table->integer(UsersRolesTable::FLD_USER_ID)->unsigned();
-            $table->integer(UsersRolesTable::FLD_ROLE_ID)->unsigned();
+        Schema::create('users_roles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('role_id')->unsigned();
             
-            $table->foreign(UsersRolesTable::FLD_USER_ID)
-            ->references(UsersTable::FLD_ID)->on(UsersTable::TABLE_NAME)
+            $table->foreign('user_id')
+            ->references('id')->on('users')
             ->onDelete('cascade');
             
-            $table->foreign(UsersRolesTable::FLD_ROLE_ID)
-            ->references(RolesTable::FLD_ID)->on(RolesTable::TABLE_NAME)
+            $table->foreign('role_id')
+            ->references('id')->on('roles')
             ->onDelete('cascade');
         });
     }
@@ -38,6 +35,6 @@ class CreateUsersRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(UsersRolesTable::TABLE_NAME);
+        Schema::dropIfExists('users_roles');
     }
 }

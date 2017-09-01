@@ -6,8 +6,8 @@ use App\Model\Permission;
 use App\Model\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 
@@ -54,31 +54,15 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|min:6',
-        ]);
-        
-        DB::beginTransaction();
-        try {
-            $role = new Role();
-            $role->fill($request->all());
-            $role->created_by = Auth::user()->id;
-            $role->updated_by = Auth::user()->id;
-            $role->save();
+        $result = $this->save($request, null);
+        $success = $result['success'];
+        $role = $result['role'];
 
-            $role->permissions()->sync($request->input('permissions'));
-
-            DB::commit();
-            $success = true;
-        } catch (Exception $e) {
-            $success = false;
-            DB::rollback();
-        }
-    
         if ($success) {
-            return redirect()->route('role.index', [
-                'notification' => 'created_success'
-            ]);
+            return redirect()->route('role.index')
+                ->withCookie(
+                    Cookie::forever('notification', json_encode(['type' => 'success', 'message'=>'Create successfully']), 0 , null, null, false, false)
+                );
         }
         else{
             return view('role.create', [
@@ -86,7 +70,7 @@ class RoleController extends Controller
             ])->withErrors(
                 ['unknown_error' => 'unknown_error']
             );
-        };                        
+        };
     }
 
     /**
@@ -118,12 +102,27 @@ class RoleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $result = $this->save($request, $role);
+        $success = $result['success'];
+        $role = $result['role'];
+
+        if ($success) {
+            return redirect()->route('role.index')->withCookie(
+                Cookie::forever('notification', json_encode(['type' => 'success', 'message'=>'Update successfully']), 0 , null, null, false, false)
+            );
+        }
+        else{
+            return view('role.create', [
+                'model'=> $role
+            ])->withErrors(
+                ['unknown_error' => 'unknown_error']
+            );
+        };
     }
 
     /**
@@ -134,11 +133,65 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        if (!$role->delete()) {
-            return redirect()->route('role.index', [
-                'notification' => 'deleted_error'
-            ]);
+        if ($role->delete()) {
+            return redirect()->route('role.index')->withCookie(
+                Cookie::forever('notification', json_encode(['type' => 'success', 'message'=>'Delete successfully']), 0 , null, null, false, false)
+            );
         }
-        return redirect()->route('role.index');
+        return redirect()->route('role.index')->withCookie(
+            Cookie::forever('notification', json_encode(['type' => 'error', 'message'=>'Delete Error']), 0 , null, null, false, false)
+        );
+    }
+
+    private function save($request, $role){
+        //flag result
+        $success = false;
+
+        if($role == null){
+            $this->validate($request, [
+                'name' => 'required|min:6|unique:roles'
+            ]);
+
+            DB::beginTransaction();
+            try {
+                $role = new Role();
+                $role->fill($request->all());
+                $role->created_by = Auth::user()->id;
+                $role->updated_by = Auth::user()->id;
+
+                $role->save();
+                $role->permissions()->sync($request->input('permissions'));
+
+                DB::commit();
+                $success = true;
+            } catch (Exception $e) {
+                $success = false;
+                DB::rollback();
+            }
+        }
+        else{
+            $this->validate($request, [
+                'name' => 'required|min:6|unique:roles,name,'.$role->id
+            ]);
+
+            DB::beginTransaction();
+            try {
+                $role->fill($request->all());
+                $role->updated_by = Auth::user()->id;
+                $role->save();
+
+                $role->permissions()->sync($request->input('permissions'));
+
+                DB::commit();
+                $success = true;
+            } catch (Exception $e) {
+                $success = false;
+                DB::rollback();
+            }
+        }
+        return [
+            'success' => $success,
+            'role' => $role
+        ];
     }
 }

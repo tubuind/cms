@@ -65,15 +65,4 @@
             });
         });
     </script>
-
-    <?php
-        if(isset($notification)){
-    ?>
-    <script>
-        CMS.showNotify('Error', '{{ $notification }}', true);
-    </script>
-    <?php
-        }
-
-    ?>
 @endsection

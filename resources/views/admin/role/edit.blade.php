@@ -17,7 +17,7 @@
         <div class="panel-body">
             {{
                 Form::model($role, array(
-                    'route' => [ 'permission.update', $role->id ],
+                    'route' => [ 'role.update', $role->id ],
                     'class' => 'form-horizontal form-validate-jquery',
                 ))
             }}

@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-use App\Common\Constants\PermissionsTable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -22,7 +21,7 @@ class Permission extends Model
      *
      * @var string
      */
-    protected $table = PermissionsTable::TABLE_NAME;
+    protected $table = 'permissions';
     
     /**
      * The attributes that are mass assignable.
@@ -30,8 +29,7 @@ class Permission extends Model
      * @var array
      */
     protected $fillable = [
-        PermissionsTable::FLD_ID, PermissionsTable::FLD_NAME, PermissionsTable::FLD_ACTION, PermissionsTable::FLD_CREATED_AT, PermissionsTable::FLD_UPDATED_AT,
-            PermissionsTable::FLD_CREATED_BY, PermissionsTable::FLD_UPDATED_BY, PermissionsTable::FLD_NOTE
+        'id', 'name', 'action',  'created_at',  'updated_at', 'created_by', 'updated_by', 'note'
     ];
     
     /**

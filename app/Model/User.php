@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-use App\Common\Constants\UsersTable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -18,8 +17,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        UsersTable::FLD_ID, UsersTable::FLD_NAME, UsersTable::FLD_EMAIL, UsersTable::FLD_PASSWORD, UsersTable::FLD_AVARTAR_URL,
-            UsersTable::FLD_CREATED_BY, UsersTable::FLD_UPDATED_BY, UsersTable::FLD_IS_VERIFIED, UsersTable::FLD_STATUS
+        'id', 'name', 'email', 'avatar_url', 'created_by', 'updated_by', 'password', 'remember_token',
+            'created_at', 'updated_at', 'is_verified', 'status', 'ip', 'avatar_url', 'note'
     ];
 
     /**
@@ -28,6 +27,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        UsersTable::FLD_PASSWORD, UsersTable::FLD_REMEMBER_TOKEN
+        'password', 'remember_token'
     ];
+
+    /**
+     * The users that belong to the roles.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Model\Role', 'users_roles', 'user_id', 'role_id');
+    }
 }

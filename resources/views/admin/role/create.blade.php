@@ -23,6 +23,7 @@
                 ])
             }}
 
+            {{ method_field("POST") }}
             @include('admin.role._form')
 
             {{ Form::close() }}

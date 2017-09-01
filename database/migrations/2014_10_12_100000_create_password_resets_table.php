@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use App\Common\Constants\PasswordResetsTable;
 
 class CreatePasswordResetsTable extends Migration
 {
@@ -14,10 +13,10 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
-        Schema::create(PasswordResetsTable::TABLE_NAME, function (Blueprint $table) {
-            $table->string(PasswordResetsTable::FLD_EMAIL)->index();
-            $table->string(PasswordResetsTable::FLD_TOKEN);
-            $table->timestamp(PasswordResetsTable::FLD_CREATED_AT)->nullable();
+        Schema::create('password_resets', function (Blueprint $table) {
+            $table->string('email')->index();
+            $table->string('token');
+            $table->timestamp('created_at')->nullable();
         });
     }
 

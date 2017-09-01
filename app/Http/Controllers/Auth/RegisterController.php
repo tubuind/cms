@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Common\Constants\CommonConstants;
-use App\Common\Constants\UsersTable;
 use App\Model\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -65,13 +64,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            UsersTable::FLD_NAME => $data['name'],
-            UsersTable::FLD_EMAIL => $data['email'],
-            UsersTable::FLD_PASSWORD => bcrypt($data['password']),
-            UsersTable::FLD_IS_VERIFIED => false,
-            UsersTable::FLD_CREATED_BY => CommonConstants::DEFAULT_CREATED_UPDATED_BY,
-            UsersTable::FLD_UPDATED_BY => CommonConstants::DEFAULT_CREATED_UPDATED_BY,
-            UsersTable::FLD_STATUS => CommonConstants::DISABLED_STATUS
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+            'is_verified' => false,
+            'created_by' => CommonConstants::DEFAULT_CREATED_UPDATED_BY,
+            'updated_by' => CommonConstants::DEFAULT_CREATED_UPDATED_BY,
+            'status' => CommonConstants::DISABLED_STATUS
         ]);
     }
 }

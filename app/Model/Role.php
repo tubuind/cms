@@ -3,7 +3,6 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Common\Constants\RolesTable;
 
 /**
  * @property int $id
@@ -21,7 +20,7 @@ class Role extends Model
      *
      * @var string
      */
-    protected $table = RolesTable::TABLE_NAME;
+    protected $table = 'roles';
     
     /**
      * The attributes that are mass assignable.
@@ -29,8 +28,7 @@ class Role extends Model
      * @var array
      */
     protected $fillable = [
-         RolesTable::FLD_ID,  RolesTable::FLD_NAME,  RolesTable::FLD_CREATED_AT,  RolesTable::FLD_UPDATED_AT,
-         RolesTable::FLD_CREATED_BY,  RolesTable::FLD_UPDATED_BY,  RolesTable::FLD_NOTE
+         'id', 'name', 'created_at', 'updated_at', 'created_by', 'updated_by', 'note'
     ];
     
     /**

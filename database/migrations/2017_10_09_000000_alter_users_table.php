@@ -4,7 +4,6 @@ use App\Common\Constants\CommonConstants;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use App\Common\Constants\UsersTable;
 
 class AlterUsersTable extends Migration
 {
@@ -15,14 +14,14 @@ class AlterUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table(UsersTable::TABLE_NAME, function (Blueprint $table) {
-            $table->string(UsersTable::FLD_AVARTAR_URL)->nullable();
-            $table->ipAddress(UsersTable::FLD_IP)->nullable();
-            $table->integer(UsersTable::FLD_CREATED_BY);   
-            $table->integer(UsersTable::FLD_UPDATED_BY);
-            $table->string(UsersTable::FLD_NOTE)->nullable();
-            $table->boolean(UsersTable::FLD_IS_VERIFIED);
-            $table->enum(UsersTable::FLD_STATUS, CommonConstants::COMMON_STATUS);
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('avatar_url')->nullable();
+            $table->ipAddress('ip')->nullable();
+            $table->integer('created_by');
+            $table->integer('updated_by');
+            $table->string('note')->nullable();
+            $table->boolean('is_verified');
+            $table->enum('status', CommonConstants::COMMON_STATUS);
         });
     }
 
@@ -34,11 +33,13 @@ class AlterUsersTable extends Migration
     public function down()
     {
         Schema::table(UsersTable::TABLE_NAME, function (Blueprint $table) {
-            $table->dropColumn(UsersTable::FLD_IP);
-            $table->dropColumn(UsersTable::FLD_CREATED_BY);
-            $table->dropColumn(UsersTable::FLD_UPDATED_BY);
-            $table->dropColumn(UsersTable::FLD_NOTE);
-            $table->dropColumn(UsersTable::FLD_STATUS);
+            $table->dropColumn('avatar_url');
+            $table->dropColumn('ip');
+            $table->dropColumn('created_by');
+            $table->dropColumn('updated_by');
+            $table->dropColumn('note');
+            $table->dropColumn('is_verified');
+            $table->dropColumn('status');
         });
     }
 }

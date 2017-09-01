@@ -10,11 +10,13 @@ var CMS = {
         });
     },
 
-    showNotify: function(title, text, isError){
+    showNotify: function(type, message){
         new PNotify({
-            title: title,
-            text: text,
-            addclass: isError ? 'bg-danger' : 'bg-success'
+            animation: 'slide',
+            delay: 3000,
+            title: type == 'error' ? 'Warning' : 'Information',
+            text: message,
+            addclass: type == 'error' ? 'bg-danger' : 'bg-success'
         });
     }
 }

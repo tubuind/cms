@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use App\Common\Constants\CommonConstants;
-use App\Common\Constants\PermissionsTable;
 
 class CreatePermissionsTable extends Migration
 {
@@ -15,14 +13,14 @@ class CreatePermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create(PermissionsTable::TABLE_NAME, function (Blueprint $table) {
-            $table->increments(PermissionsTable::FLD_ID);
-            $table->string(PermissionsTable::FLD_NAME);
-            $table->string(PermissionsTable::FLD_ACTION)->unique();
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('action')->unique();
             $table->timestamps();
-            $table->integer(PermissionsTable::FLD_CREATED_BY);
-            $table->integer(PermissionsTable::FLD_UPDATED_BY);
-            $table->string(PermissionsTable::FLD_NOTE)->nullable();
+            $table->integer('created_by');
+            $table->integer('updated_by');
+            $table->string('note')->nullable();
         });
     }
     
@@ -33,6 +31,6 @@ class CreatePermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(PermissionsTable::TABLE_NAME);
+        Schema::dropIfExists('permissions');
     }
 }

@@ -23,6 +23,8 @@
                 ])
             }}
 
+            {{ method_field("POST") }}
+
             @include('admin.permission._form')
 
             {{ Form::close() }}

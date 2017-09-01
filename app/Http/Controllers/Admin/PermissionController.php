@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Permission;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
 
 class PermissionController extends Controller
 {
@@ -51,24 +52,23 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|min:6',
-            'action' => 'required|min:6|unique:permissions'
-        ]);
+        $result = $this->save($request, null);
+        $success = $result['success'];
+        $permission = $result['permission'];
 
-        $permission = new Permission();
-        $permission->fill($request->all());
-        $permission->created_by = Auth::user()->id;
-        $permission->updated_by = Auth::user()->id;
-
-        if($permission->save())
-            return redirect()->route('permission.index');
-        else
+        if ($success) {
+            return redirect()->route('permission.index')
+                ->withCookie(
+                    Cookie::forever('notification', json_encode(['type' => 'success', 'message'=>'Create successfully']), 0 , null, null, false, false)
+                );
+        }
+        else{
             return view('permission.create', [
-                'permission'=> $permission
+                'model'=> $permission
             ])->withErrors(
                 ['unknown_error' => 'unknown_error']
             );
+        };
     }
 
     /**
@@ -104,20 +104,22 @@ class PermissionController extends Controller
      */
     public function update(Request $request, Permission $permission)
     {
-        $this->validate($request, [
-            'name' => 'required|min:6',
-            'action' => 'required|min:6|unique:permissions,id,'.$permission->id
-        ]);
-        $permission->updated_by = Auth::user()->id;
+        $result = $this->save($request, $permission);
+        $success = $result['success'];
+        $permission = $result['permission'];
 
-        if($permission->update($request->all()))
-            return redirect()->route('permission.index');
-        else
-            return view('permission.edit', [
+        if ($success) {
+            return redirect()->route('permission.index')->withCookie(
+                Cookie::forever('notification', json_encode(['type' => 'success', 'message'=>'Update successfully']), 0 , null, null, false, false)
+            );
+        }
+        else{
+            return view('permission.create', [
                 'model'=> $permission
             ])->withErrors(
                 ['unknown_error' => 'unknown_error']
             );
+        };
     }
 
     /**
@@ -127,11 +129,67 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        if (!$permission->delete()) {
-            return redirect()->route('permission.index', [
-                'notification' => 'Failed to delete record'
-            ]);
+        if ($permission->delete()) {
+            return redirect()->route('permission.index')->withCookie(
+                Cookie::forever('notification', json_encode(['type' => 'success', 'message'=>'Delete successfully']), 0 , null, null, false, false)
+            );
         }
-        return redirect()->route('permission.index');
+        return redirect()->route('permission.index')->withCookie(
+            Cookie::forever('notification', json_encode(['type' => 'error', 'message'=>'Delete Error']), 0 , null, null, false, false)
+        );
     }
+
+    private function save($request, $permission){
+        //flag result
+        $success = false;
+
+        if($permission == null && $request->input('_method') == 'POST'){
+            $this->validate($request, [
+                'name' => 'required|min:6',
+                'action' => 'required|min:6|unique:permissions'
+            ]);
+
+            DB::beginTransaction();
+            try {
+                $permission = new Permission();
+                $permission->fill($request->all());
+                $permission->created_by = Auth::user()->id;
+                $permission->updated_by = Auth::user()->id;
+
+                $permission->save();
+
+                DB::commit();
+                $success = true;
+            } catch (Exception $e) {
+                $success = false;
+                DB::rollback();
+            }
+        }
+        if($permission != null && $request->input('_method') == 'PUT'){
+            $this->validate($request, [
+                'name' => 'required|min:6',
+                'action' => 'required|min:6|unique:permissions,id,'.$permission->id
+            ]);
+
+            DB::beginTransaction();
+            try {
+                $permission->fill($request->all());
+                $permission->updated_by = Auth::user()->id;
+                $permission->save();
+
+                DB::commit();
+                $success = true;
+            } catch (Exception $e) {
+                $success = false;
+                DB::rollback();
+            }
+        }
+        return [
+            'success' => $success,
+            'permission' => $permission
+        ];
+
+    }
+
+
 }

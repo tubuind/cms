@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use App\Common\Constants\CommonConstants;
-use App\Common\Constants\RolesTable;
 
 class CreateRolesTable extends Migration
 {
@@ -15,13 +13,13 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create(RolesTable::TABLE_NAME, function (Blueprint $table) {
-            $table->increments(RolesTable::FLD_ID);
-            $table->string(RolesTable::FLD_NAME)->unique();
+        Schema::create('roles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->unique();
             $table->timestamps();
-            $table->integer(RolesTable::FLD_CREATED_BY);
-            $table->integer(RolesTable::FLD_UPDATED_BY);
-            $table->string(RolesTable::FLD_NOTE)->nullable();
+            $table->integer('created_by');
+            $table->integer('updated_by');
+            $table->string('note')->nullable();
         });
     }
 
@@ -32,6 +30,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(Constants.RolesTable::TABLE_NAME);
+        Schema::dropIfExists('roles');
     }
 }

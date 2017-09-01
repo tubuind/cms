@@ -15,7 +15,7 @@ class LanguagesController extends Controller
     
     /**
      * Set language of the resource.
-     *
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
     public function set(Request $request)
