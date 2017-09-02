@@ -31,33 +31,37 @@ class PaginationController extends Controller
 
         //Start query
         $model = new $strModel();
-        $model = $model->orderBy($columns[$orderColumn]['data'], $orderType);
+        if($columns[$orderColumn]['data'] != null)
+            $model = $model->orderBy($columns[$orderColumn]['data'], $orderType);
         if(count($searchColumns) > 0 && $search != null){
             foreach($searchColumns as $sc)
                 $model = $model->orWhere($sc, 'like', '%'.$search.'%');
         }
-        
+
         $count = $model->count();
         $query = $model->skip($start)->take($length)->get();
-        
-        
-        //Init json result
-        $result = '{"draw": '.$draw.',"recordsTotal": '.$count.',"recordsFiltered": '.$count.',"data": [';  
-        foreach($query as $key1 => $item){ 
-            $result = $result.'{';
-            $result = $result.'"id":"'.$item->id.'",';
-            foreach($columns as $key2 => $col){ 
+
+        $result =[
+            'draw' => $draw,
+            'recordsTotal' => $count,
+            'recordsFiltered' => $count,
+            'data' => []
+        ];
+
+        $data = [];
+
+        foreach($query as $item){
+            $obj = [];
+            $obj['id'] = $item->id;
+            foreach($columns as $col){
                 $colName = $col['data'];
-                $result = $result.'"'.$colName.'":"'.$item->$colName.'"';  
-                if($key2 != (count($columns)-1))
-                    $result = $result.',';                                           
-            }   
-            $result = $result.'}'; 
-            if($key1 != (count($query)-1))
-                $result = $result.','; 
-        }   
-        $result = $result.']}';  
-        
-        return $result;
+                if($colName != null)
+                    $obj[$colName] = $item->$colName;
+            }
+            array_push($data, $obj);
+        }
+        $result['data'] = $data;
+
+        return json_encode($result);
     }
 }
