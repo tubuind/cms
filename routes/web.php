@@ -24,8 +24,12 @@ Route::get('/', function () {
 //Language
 Route::get('/language/set', 'Guest\LanguagesController@set')->name('language.set');
 
+//Common
+Route::get('/error', 'Common\CommonController@error')->name('common.error');
+Route::get('/youtube/login', 'Common\CommonController@loginYoutube')->name('common.login_youtube');
+
 //Group router admin
-Route::group(['prefix'=>'/admin', 'middleware'=>['auth', 'bindings'] ], function(){
+Route::group(['prefix'=>'/admin', 'middleware'=>['auth', 'bindings', 'auth.youtube'] ], function(){
 
     //Dashboard
     Route::get('/', 'Admin\DashboardController@index')->name('dashboard.index');

@@ -2,14 +2,14 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<!-- CSRF Token -->
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<title>{{ config('app.name', 'My CMS') }}</title>
-	
+
 	<link rel="shortcut icon" href="{{ config('app.url', '') }}/assets/images/favicon.ico">
 
 	<!-- Global stylesheets -->
@@ -43,375 +43,385 @@
 </head>
 
 <body class="navbar-top pace-done">
-	<div id="div-ajax-loading" style="background-image: url('{{ config('app.url', '') }}/assets/images/ajax_loading.svg');">
+<div id="div-ajax-loading" style="background-image: url('{{ config('app.url', '') }}/assets/images/ajax_loading.svg');">
 
+</div>
+<!-- Main navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-header">
+		<a class="navbar-brand" href="{{ config('app.url', '') }}"><img src="{{ config('app.url', '') }}/assets/images/logo_light.png" alt=""></a>
+
+		<ul class="nav navbar-nav visible-xs-block">
+			<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+			<li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+		</ul>
 	</div>
-	<!-- Main navbar -->
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="{{ config('app.url', '') }}"><img src="{{ config('app.url', '') }}/assets/images/logo_light.png" alt=""></a>
 
-			<ul class="nav navbar-nav visible-xs-block">
-				<li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
-				<li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
-			</ul>
-		</div>
+	<div class="navbar-collapse collapse" id="navbar-mobile">
+		<ul class="nav navbar-nav">
+			<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
 
-		<div class="navbar-collapse collapse" id="navbar-mobile">
-			<ul class="nav navbar-nav">
-				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<i class="icon-git-compare"></i>
+					<span class="visible-xs-inline-block position-right">Git updates</span>
+					<span class="badge bg-warning-400">9</span>
+				</a>
 
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-git-compare"></i>
-						<span class="visible-xs-inline-block position-right">Git updates</span>
-						<span class="badge bg-warning-400">9</span>
-					</a>
-					
-					<div class="dropdown-menu dropdown-content">
-						<div class="dropdown-content-heading">
-							Git updates
-							<ul class="icons-list">
-								<li><a href="#"><i class="icon-sync"></i></a></li>
-							</ul>
-						</div>
-
-						<ul class="media-list dropdown-content-body width-350">
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
-								</div>
-
-								<div class="media-body">
-									Drop the IE <a href="#">specific hacks</a> for temporal inputs
-									<div class="media-annotation">4 minutes ago</div>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-commit"></i></a>
-								</div>
-								
-								<div class="media-body">
-									Add full font overrides for popovers and tooltips
-									<div class="media-annotation">36 minutes ago</div>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-info text-info btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-branch"></i></a>
-								</div>
-								
-								<div class="media-body">
-									<a href="#">Chris Arney</a> created a new <span class="text-semibold">Design</span> branch
-									<div class="media-annotation">2 hours ago</div>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-merge"></i></a>
-								</div>
-								
-								<div class="media-body">
-									<a href="#">Eugene Kopyov</a> merged <span class="text-semibold">Master</span> and <span class="text-semibold">Dev</span> branches
-									<div class="media-annotation">Dec 18, 18:36</div>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left">
-									<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
-								</div>
-								
-								<div class="media-body">
-									Have Carousel ignore keyboard events
-									<div class="media-annotation">Dec 12, 05:46</div>
-								</div>
-							</li>
+				<div class="dropdown-menu dropdown-content">
+					<div class="dropdown-content-heading">
+						Git updates
+						<ul class="icons-list">
+							<li><a href="#"><i class="icon-sync"></i></a></li>
 						</ul>
-
-						<div class="dropdown-content-footer">
-							<a href="#" data-popup="tooltip" title="All activity"><i class="icon-menu display-block"></i></a>
-						</div>
 					</div>
-				</li>
-			</ul>
 
-			<p class="navbar-text"><span class="label bg-success">Online</span></p>
+					<ul class="media-list dropdown-content-body width-350">
+						<li class="media">
+							<div class="media-left">
+								<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
+							</div>
 
-			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown language-switch">
-					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="{{ config('app.url', '').$language['logo'] }}" class="position-left" alt="">
-                        {{ $language['name'] }}
-						<span class="caret"></span>
-					</a>
+							<div class="media-body">
+								Drop the IE <a href="#">specific hacks</a> for temporal inputs
+								<div class="media-annotation">4 minutes ago</div>
+							</div>
+						</li>
 
-					<ul class="dropdown-menu">
-						<?php
-						  foreach ($listLanguage as $lang){
-						?>
-							<li>
-								<a href="{{ url('/language/set').'?lang='.$lang['alias'] }}">
-									<img src="{{ config('app.url', '').$lang['logo'] }}?>" alt=""> {{ $lang['name'] }}
+						<li class="media">
+							<div class="media-left">
+								<a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-commit"></i></a>
+							</div>
+
+							<div class="media-body">
+								Add full font overrides for popovers and tooltips
+								<div class="media-annotation">36 minutes ago</div>
+							</div>
+						</li>
+
+						<li class="media">
+							<div class="media-left">
+								<a href="#" class="btn border-info text-info btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-branch"></i></a>
+							</div>
+
+							<div class="media-body">
+								<a href="#">Chris Arney</a> created a new <span class="text-semibold">Design</span> branch
+								<div class="media-annotation">2 hours ago</div>
+							</div>
+						</li>
+
+						<li class="media">
+							<div class="media-left">
+								<a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-merge"></i></a>
+							</div>
+
+							<div class="media-body">
+								<a href="#">Eugene Kopyov</a> merged <span class="text-semibold">Master</span> and <span class="text-semibold">Dev</span> branches
+								<div class="media-annotation">Dec 18, 18:36</div>
+							</div>
+						</li>
+
+						<li class="media">
+							<div class="media-left">
+								<a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
+							</div>
+
+							<div class="media-body">
+								Have Carousel ignore keyboard events
+								<div class="media-annotation">Dec 12, 05:46</div>
+							</div>
+						</li>
+					</ul>
+
+					<div class="dropdown-content-footer">
+						<a href="#" data-popup="tooltip" title="All activity"><i class="icon-menu display-block"></i></a>
+					</div>
+				</div>
+			</li>
+		</ul>
+
+		<p class="navbar-text"><span class="label bg-success">Online</span></p>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown language-switch">
+				<a class="dropdown-toggle" data-toggle="dropdown">
+					<img src="{{ config('app.url', '').$language['logo'] }}" class="position-left" alt="">
+					{{ $language['name'] }}
+					<span class="caret"></span>
+				</a>
+
+				<ul class="dropdown-menu">
+                    <?php
+                    foreach ($listLanguage as $lang){
+                    ?>
+					<li>
+						<a href="{{ url('/language/set').'?lang='.$lang['alias'] }}">
+							<img src="{{ config('app.url', '').$lang['logo'] }}?>" alt=""> {{ $lang['name'] }}
+						</a>
+					</li>
+                    <?php } ?>
+				</ul>
+			</li>
+
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<i class="icon-bubbles4"></i>
+					<span class="visible-xs-inline-block position-right">Messages</span>
+					<span class="badge bg-warning-400">2</span>
+				</a>
+
+				<div class="dropdown-menu dropdown-content width-350">
+					<div class="dropdown-content-heading">
+						Messages
+						<ul class="icons-list">
+							<li><a href="#"><i class="icon-compose"></i></a></li>
+						</ul>
+					</div>
+
+					<ul class="media-list dropdown-content-body">
+						<li class="media">
+							<div class="media-left">
+								<img src="{{ config('app.url', '') }}/assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+								<span class="badge bg-danger-400 media-badge">4</span>
+							</div>
+
+							<div class="media-body">
+								<a href="#" class="media-heading">
+									<span class="text-semibold">Margo Baker</span>
+									<span class="media-annotation pull-right">12:16</span>
 								</a>
-							</li>
-						<?php } ?>
+
+								<span class="text-muted">That was something he was unable to do because...</span>
+							</div>
+						</li>
+
+						<li class="media">
+							<div class="media-left"><img src="{{ config('app.url', '') }}/assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
+							<div class="media-body">
+								<a href="#" class="media-heading">
+									<span class="text-semibold">Jeremy Victorino</span>
+									<span class="media-annotation pull-right">22:48</span>
+								</a>
+
+								<span class="text-muted">But that would be extremely strained and suspicious...</span>
+							</div>
+						</li>
 					</ul>
-				</li>
 
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						<i class="icon-bubbles4"></i>
-						<span class="visible-xs-inline-block position-right">Messages</span>
-						<span class="badge bg-warning-400">2</span>
-					</a>
-					
-					<div class="dropdown-menu dropdown-content width-350">
-						<div class="dropdown-content-heading">
-							Messages
-							<ul class="icons-list">
-								<li><a href="#"><i class="icon-compose"></i></a></li>
-							</ul>
-						</div>
-
-						<ul class="media-list dropdown-content-body">
-							<li class="media">
-								<div class="media-left">
-									<img src="{{ config('app.url', '') }}/assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
-									<span class="badge bg-danger-400 media-badge">4</span>
-								</div>
-
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Margo Baker</span>
-										<span class="media-annotation pull-right">12:16</span>
-									</a>
-
-									<span class="text-muted">That was something he was unable to do because...</span>
-								</div>
-							</li>
-
-							<li class="media">
-								<div class="media-left"><img src="{{ config('app.url', '') }}/assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></div>
-								<div class="media-body">
-									<a href="#" class="media-heading">
-										<span class="text-semibold">Jeremy Victorino</span>
-										<span class="media-annotation pull-right">22:48</span>
-									</a>
-
-									<span class="text-muted">But that would be extremely strained and suspicious...</span>
-								</div>
-							</li>
-						</ul>
-
-						<div class="dropdown-content-footer">
-							<a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
-						</div>
+					<div class="dropdown-content-footer">
+						<a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
 					</div>
-				</li>
+				</div>
+			</li>
 
-				<li class="dropdown dropdown-user">
-					<a class="dropdown-toggle" data-toggle="dropdown">
-						<img src="{{ config('app.url', '') }}/assets/images/placeholder.jpg" alt="">
-						<span>Victoria</span>
-						<i class="caret"></i>
-					</a>
+			<li class="dropdown dropdown-user">
+				<a class="dropdown-toggle" data-toggle="dropdown">
+					<img src="{{ config('app.url', '') }}/assets/images/placeholder.jpg" alt="">
+					<span>Victoria</span>
+					<i class="caret"></i>
+				</a>
 
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
-						<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
-						<li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
-						<li class="divider"></li>
-						<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-						<li><a href="#"><i class="icon-switch2"></i> Logout</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
+				<ul class="dropdown-menu dropdown-menu-right">
+					<li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+					<li><a href="#"><i class="icon-coins"></i> My balance</a></li>
+					<li><a href="#"><span class="badge bg-teal-400 pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
+					<li class="divider"></li>
+					<li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
+					<li>
+						<a href="{{ route('logout') }}"
+						   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+							<i class="icon-switch2"></i>
+							Logout
+						</a>
+
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							{{ csrf_field() }}
+						</form>
+					</li>
+				</ul>
+			</li>
+		</ul>
 	</div>
-	<!-- /main navbar -->
+</div>
+<!-- /main navbar -->
 
 
-	<!-- Page container -->
-	<div class="page-container">
+<!-- Page container -->
+<div class="page-container">
 
-		<!-- Page content -->
-		<div class="page-content">
+	<!-- Page content -->
+	<div class="page-content">
 
-			<!-- Main sidebar -->
-			<div class="sidebar sidebar-main sidebar-fixed">
-				<div class="sidebar-content">
+		<!-- Main sidebar -->
+		<div class="sidebar sidebar-main sidebar-fixed">
+			<div class="sidebar-content">
 
-					<!-- User menu -->
-					<div class="sidebar-user">
-						<div class="category-content">
-							<div class="media">
-								<a href="#" class="media-left"><img src="{{ config('app.url', '') }}/assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
-								<div class="media-body">
-									<span class="media-heading text-semibold">Victoria Baker</span>
-									<div class="text-size-mini text-muted">
-										<i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
-									</div>
+				<!-- User menu -->
+				<div class="sidebar-user">
+					<div class="category-content">
+						<div class="media">
+							<a href="#" class="media-left"><img src="{{ config('app.url', '') }}/assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+							<div class="media-body">
+								<span class="media-heading text-semibold">Victoria Baker</span>
+								<div class="text-size-mini text-muted">
+									<i class="icon-pin text-size-small"></i> &nbsp;Santa Ana, CA
 								</div>
+							</div>
 
-								<div class="media-right media-middle">
-									<ul class="icons-list">
-										<li>
-											<a href="#"><i class="icon-cog3"></i></a>
-										</li>
-									</ul>
-								</div>
+							<div class="media-right media-middle">
+								<ul class="icons-list">
+									<li>
+										<a href="#"><i class="icon-cog3"></i></a>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
-					<!-- /user menu -->
-
-
-					<!-- Main navigation -->
-					<div class="sidebar-category sidebar-category-visible">
-						<div class="category-content no-padding">
-							<ul class="navigation navigation-main navigation-accordion">
-
-								<!-- Main -->
-								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-								<li><a href="{{ url('/admin') }}"><i class="icon-home4"></i> <span>Dashboard</span></a></li>						
-								<!-- /main -->
-								
-								<!-- Setting -->
-								<li class="navigation-header"><span>{{ __('menu.left_menu.setting') }}</span> <i class="icon-menu" title="Main pages"></i></li>
-								<!-- Authorize management -->
-								<li>
-									<a href="#"><i class="icon-puzzle4"></i> <span>{{ __('menu.left_menu.authorize') }}</span></a>
-									<ul>
-										<li><a href="{{ url('/admin/user') }}">{{ __('menu.left_menu.user_management') }}</a></li>
-										<li><a href="{{ url('/admin/role') }}">{{ __('menu.left_menu.role_management') }}</a></li>
-										<li><a href="{{ url('/admin/permission') }}">{{ __('menu.left_menu.permission_management') }}</a></li>
-									</ul>
-								</li>							
-								<!-- Authorize management -->
-
-
-							</ul>
-						</div>
-					</div>
-					<!-- /main navigation -->
-
 				</div>
+				<!-- /user menu -->
+
+
+				<!-- Main navigation -->
+				<div class="sidebar-category sidebar-category-visible">
+					<div class="category-content no-padding">
+						<ul class="navigation navigation-main navigation-accordion">
+
+							<!-- Main -->
+							<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+							<li><a href="{{ url('/admin') }}"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
+							<!-- /main -->
+
+							<!-- Setting -->
+							<li class="navigation-header"><span>{{ __('menu.left_menu.setting') }}</span> <i class="icon-menu" title="Main pages"></i></li>
+							<!-- Authorize management -->
+							<li>
+								<a href="#"><i class="icon-puzzle4"></i> <span>{{ __('menu.left_menu.authorize') }}</span></a>
+								<ul>
+									<li><a href="{{ url('/admin/user') }}">{{ __('menu.left_menu.user_management') }}</a></li>
+									<li><a href="{{ url('/admin/role') }}">{{ __('menu.left_menu.role_management') }}</a></li>
+									<li><a href="{{ url('/admin/permission') }}">{{ __('menu.left_menu.permission_management') }}</a></li>
+								</ul>
+							</li>
+							<!-- Authorize management -->
+
+
+						</ul>
+					</div>
+				</div>
+				<!-- /main navigation -->
+
 			</div>
-			<!-- /main sidebar -->
+		</div>
+		<!-- /main sidebar -->
 
 
-			<!-- Main content -->
-			<div class="content-wrapper">
+		<!-- Main content -->
+		<div class="content-wrapper">
 
-				<!-- Page header -->
-				<div class="page-header page-header-default">
-					<div class="page-header-content">
-						<div class="page-title">
-							<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{{ __('menu.left_menu.home') }}</span> - {{ __($pageTitle) }}</h4>
-						</div>
-
-						{{--<div class="heading-elements">--}}
-							{{--<div class="heading-btn-group">--}}
-								{{--<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>--}}
-								{{--<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>--}}
-								{{--<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>--}}
-							{{--</div>--}}
-						{{--</div>--}}
+			<!-- Page header -->
+			<div class="page-header page-header-default">
+				<div class="page-header-content">
+					<div class="page-title">
+						<h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">{{ __('menu.left_menu.home') }}</span> - {{ __($pageTitle) }}</h4>
 					</div>
 
-					{{--<div class="breadcrumb-line">--}}
-						{{--<ul class="breadcrumb">--}}
-							{{--<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>--}}
-							{{--<li class="active">Dashboard</li>--}}
-						{{--</ul>--}}
-
-						{{--<ul class="breadcrumb-elements">--}}
-							{{--<li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>--}}
-							{{--<li class="dropdown">--}}
-								{{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
-									{{--<i class="icon-gear position-left"></i>--}}
-									{{--Settings--}}
-									{{--<span class="caret"></span>--}}
-								{{--</a>--}}
-
-								{{--<ul class="dropdown-menu dropdown-menu-right">--}}
-									{{--<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>--}}
-									{{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
-									{{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
-									{{--<li class="divider"></li>--}}
-									{{--<li><a href="#"><i class="icon-gear"></i> All settings</a></li>--}}
-								{{--</ul>--}}
-							{{--</li>--}}
-						{{--</ul>--}}
+					{{--<div class="heading-elements">--}}
+					{{--<div class="heading-btn-group">--}}
+					{{--<a href="#" class="btn btn-link btn-float has-text"><i class="icon-bars-alt text-primary"></i><span>Statistics</span></a>--}}
+					{{--<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calculator text-primary"></i> <span>Invoices</span></a>--}}
+					{{--<a href="#" class="btn btn-link btn-float has-text"><i class="icon-calendar5 text-primary"></i> <span>Schedule</span></a>--}}
+					{{--</div>--}}
 					{{--</div>--}}
 				</div>
-				<!-- /page header -->
 
+				{{--<div class="breadcrumb-line">--}}
+				{{--<ul class="breadcrumb">--}}
+				{{--<li><a href="index.html"><i class="icon-home2 position-left"></i> Home</a></li>--}}
+				{{--<li class="active">Dashboard</li>--}}
+				{{--</ul>--}}
 
-				<!-- Content area -->
-				<div class="content">
+				{{--<ul class="breadcrumb-elements">--}}
+				{{--<li><a href="#"><i class="icon-comment-discussion position-left"></i> Support</a></li>--}}
+				{{--<li class="dropdown">--}}
+				{{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">--}}
+				{{--<i class="icon-gear position-left"></i>--}}
+				{{--Settings--}}
+				{{--<span class="caret"></span>--}}
+				{{--</a>--}}
 
-
-					<!-- main content -->
-					@yield('content')
-					<!-- /main content -->
-
-
-					<!-- Footer -->
-					<div class="footer text-muted">
-						&copy; 2017. <a href="#">CMS</a> by <a href="#" target="_blank">TuBND</a>
-					</div>
-					<!-- /footer -->
-
-				</div>
-				<!-- /content area -->
-
+				{{--<ul class="dropdown-menu dropdown-menu-right">--}}
+				{{--<li><a href="#"><i class="icon-user-lock"></i> Account security</a></li>--}}
+				{{--<li><a href="#"><i class="icon-statistics"></i> Analytics</a></li>--}}
+				{{--<li><a href="#"><i class="icon-accessibility"></i> Accessibility</a></li>--}}
+				{{--<li class="divider"></li>--}}
+				{{--<li><a href="#"><i class="icon-gear"></i> All settings</a></li>--}}
+				{{--</ul>--}}
+				{{--</li>--}}
+				{{--</ul>--}}
+				{{--</div>--}}
 			</div>
+			<!-- /page header -->
+
+
+			<!-- Content area -->
+			<div class="content">
+
+
+				<!-- main content -->
+			@yield('content')
 			<!-- /main content -->
 
+
+				<!-- Footer -->
+				<div class="footer text-muted">
+					&copy; 2017. <a href="#">CMS</a> by <a href="#" target="_blank">TuBND</a>
+				</div>
+				<!-- /footer -->
+
+			</div>
+			<!-- /content area -->
+
 		</div>
-		<!-- /page content -->
+		<!-- /main content -->
 
 	</div>
-	<!-- /page container -->
+	<!-- /page content -->
 
-	<!-- Custom header color -->
-	<div id="modal-confirm" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header bg-brown">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h6 class="modal-title">Warning</h6>
-				</div>
+</div>
+<!-- /page container -->
 
-				<div class="modal-body">
-					<h6>Do you want to continues this action.</h6>
-				</div>
+<!-- Custom header color -->
+<div id="modal-confirm" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header bg-brown">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h6 class="modal-title">Warning</h6>
+			</div>
 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-link" data-dismiss="modal">No</button>
-					<button type="button" class="btn bg-brown">Yes</button>
-				</div>
+			<div class="modal-body">
+				<h6>Do you want to continues this action.</h6>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-link" data-dismiss="modal">No</button>
+				<button type="button" class="btn bg-brown">Yes</button>
 			</div>
 		</div>
 	</div>
-	<!-- /custom header color -->
+</div>
+<!-- /custom header color -->
 
-	<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/core/app.js"></script>
-	<script type="text/javascript" src="{{ config('app.url', '') }}/js/cms.js"></script>
+<script type="text/javascript" src="{{ config('app.url', '') }}/assets/js/core/app.js"></script>
+<script type="text/javascript" src="{{ config('app.url', '') }}/js/cms.js"></script>
 </body>
 <script>
-	$(document).ready(function(){
-		if($.cookie('notification') !== undefined){
-			var notify = JSON.parse($.cookie('notification'));
-			CMS.showNotify(notify.type, notify.message);
+    $(document).ready(function(){
+        if($.cookie('notification') !== undefined){
+            var notify = JSON.parse($.cookie('notification'));
+            CMS.showNotify(notify.type, notify.message);
             $.removeCookie('notification',{ path: '/' });
-		}
+        }
     });
 </script>
 </html>

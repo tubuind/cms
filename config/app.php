@@ -136,6 +136,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Default Config Youtube API
+    |--------------------------------------------------------------------------
+    |
+    | The fallback locale determines the locale to use when the current one
+    | is not available. You may change the value to correspond to any of
+    | the language folders that are provided through your application.
+    |
+    */
+
+    'youtube_api' => [
+        'oauth2_client_id' => '3986767468-jkujeh98o8kmqa25rj4o4u31re5d93bq.apps.googleusercontent.com',
+        'oauth2_client_secret' => 'kuorDfDXLIqTlLsfZlLbBvPl'
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
     |
